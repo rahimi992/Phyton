@@ -18,6 +18,25 @@ print get_fib(5)
 print get_fib(6)
 print get_fib(7)
 
+# dynamic memories
+def get_fib(position, memo):
+    if position == 0 or position == 1:
+        return position
+    elif not memo[position]:
+        memo[position] = get_fib(position - 1, memo) + get_fib(position - 2, memo)
+    return memo[position]
+    
+
+#Fibonacci Sequence
+#0,1,1,2,3,5,8,13,21,34...
+from collections import defaultdict
+
+dic = defaultdict(int)
+
+print get_fib(5, dic)
+print get_fib(6, dic)
+print get_fib(7, dic)
+
 """
 function getFib(position) {
   if (position == 0) { return 0; }

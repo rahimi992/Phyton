@@ -159,3 +159,73 @@ D = map(float, raw_input().split())
 x = Complex(*C)
 y = Complex(*D)
 print '\n'.join(map(str, [x+y, x-y, x*y, x/y, x.mod(), y.mod()]))
+
+############################################################################3
+# INHERITANCE
+##########################################################################3
+class Pet(object):
+
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+
+    def getName(self):
+        return self.name
+
+    def getSpecies(self):
+        return self.species
+
+    def __str__(self):
+        return "%s is a %s" % (self.name, self.species)
+
+class Dog(Pet):
+
+    def __init__(self, name, chases_cats):
+        Pet.__init__(self, name, "Dog")
+        self.chases_cats = chases_cats
+
+    def chasesCats(self):
+        return self.chases_cats
+
+class Cat(Pet):
+
+    def __init__(self, name, hates_dogs):
+        Pet.__init__(self, name, "Cat")
+        self.hates_dogs = hates_dogs
+
+    def hatesDogs(self):
+        return self.hates_dogs
+    
+from pets import Pet, Dog
+mister_pet = Pet("Mister", "Dog")
+mister_dog = Dog("Mister", True)
+isinstance(mister_pet, Pet)
+True
+isinstance(mister_pet, Dog)
+False
+isinstance(mister_dog, Pet)
+True
+isinstance(mister_dog, Dog)
+True
+
+from pets import Cat, Dog
+fido = Dog("Fido", True)
+rover = Dog("Rover", False)
+mittens = Cat("Mittens", True)
+fluffy = Cat("Fluffy", False)
+print fido
+Fido is a Dog
+print rover
+Rover is a Dog
+print mittens
+Mittens is a Cat
+print fluffy
+Fluffy is a Cat
+print "%s chases cats: %s" % (fido.getName(), fido.chasesCats())
+Fido chases cats: True
+print "%s chases cats: %s" % (rover.getName(), rover.chasesCats())
+Rover chases cats: False
+print "%s hates dogs: %s" % (mittens.getName(), mittens.hatesDogs())
+Mittens hates dogs: True
+print "%s hates dogs: %s" % (fluffy.getName(), fluffy.hatesDogs())
+Fluffy hates dogs: False
